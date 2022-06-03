@@ -5,6 +5,7 @@ from typing import cast
 from loguru import logger
 
 
+
 class InterceptHandler(logging.Handler):
     def emit(self, record: logging.LogRecord) -> None:  # pragma: no cover
         try:

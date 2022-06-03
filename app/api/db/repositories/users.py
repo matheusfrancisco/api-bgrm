@@ -25,8 +25,8 @@ class UsersRepository(BaseRepository):
                 self.connection,
                 username=user.username,
                 email=user.email,
-                token_api=user.token_api,
                 password=user.password
+                token_api=user.token_api,
             )
 
         return user.copy(update=dict(user_row))

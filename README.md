@@ -10,6 +10,8 @@ Then run the following commands to bootstrap your environment with ``poetry``: :
 
     poetry install
     poetry shell
+    docker-compose up -d db
+    poetry run alembic upgrade head
     poetry run uvicorn --host=0.0.0.0 app.main:app --reload
 
 Then create ``.env`` file (or rename and modify ``.env.example``) in project root and set environment variables for application: ::
