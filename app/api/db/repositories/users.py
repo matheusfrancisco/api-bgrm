@@ -20,12 +20,14 @@ class UsersRepository(BaseRepository):
             password=password,
             token_api=token_api)
 
+        user.change_password(password)
+
         async with self.connection.transaction():
             user_row = await queries.create_new_user(
                 self.connection,
                 username=user.username,
                 email=user.email,
-                password=user.password,
+                password=user.hashed_password,
                 token_api=user.token_api,
             )
 

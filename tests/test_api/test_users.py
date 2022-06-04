@@ -25,7 +25,14 @@ async def test_user_success_registration(
     r = response.json()
     u = r.get("user")
 
+    udb = UserInDB(
+        username= u.get("username"),
+        email=u.get("email"),
+        password=u.get("password"),
+        hashed_password=u.get("password"),
+    )
+
     assert r["status"] == HTTP_201_CREATED
-    assert u.get("email") == email
-    assert u.get("username") == username
-    assert u.get("password") == password
+    assert udb.email == email
+    assert udb.username == username
+    assert udb.check_password(password)
