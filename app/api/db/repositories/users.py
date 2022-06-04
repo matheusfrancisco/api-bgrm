@@ -25,7 +25,7 @@ class UsersRepository(BaseRepository):
                 self.connection,
                 username=user.username,
                 email=user.email,
-                password=user.password
+                password=user.password,
                 token_api=user.token_api,
             )
 
