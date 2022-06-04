@@ -24,7 +24,7 @@ async def create(input: User,
 
     token = jwt.create_access_token_for_user(
         input,
-        str(settings.secret_key.get_secret_value()),
+        str(settings.secret_key),
     )
 
     user = await user_repo.create_user(
