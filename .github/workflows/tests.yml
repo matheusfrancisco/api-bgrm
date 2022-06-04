@@ -57,4 +57,4 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
         run: |
           poetry run alembic upgrade head
-          poetry run ./scripts/test
+          poetry run pytest
