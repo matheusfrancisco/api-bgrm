@@ -8,7 +8,7 @@ from fastapi import File, UploadFile
 from starlette.responses import StreamingResponse
 import io
 from PIL import Image
-from app.api.rembg.bg import remove
+from app.api.acetona.bg import remove
 
 router = APIRouter()
 
