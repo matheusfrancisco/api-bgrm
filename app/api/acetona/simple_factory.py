@@ -8,9 +8,9 @@ from typing import Type
 import gdown
 import onnxruntime as ort
 
-from app.api.rembg.session_base import BaseSession
-from app.api.rembg.session_cloth import ClothSession
-from app.api.rembg.session_simple import SimpleSession
+from app.api.acetona.session_base import BaseSession
+from app.api.acetona.session_cloth import ClothSession
+from app.api.acetona.session_simple import SimpleSession
 
 
 def new_session(model_name: str) -> BaseSession:

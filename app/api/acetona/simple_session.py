@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from PIL.Image import Image as PILImage
 
-from app.api.rembg.session_base import BaseSession
+from app.api.acetona.session_base import BaseSession
 
 
 class SimpleSession(BaseSession):
