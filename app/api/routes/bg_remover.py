@@ -8,7 +8,8 @@ from fastapi import File, UploadFile
 from starlette.responses import StreamingResponse
 import io
 from PIL import Image
-from app.aguamicelar.app import remove
+#TODO thiague this file does not exist
+# from app.aguamicelar.app import remove
 
 router = APIRouter()
 
@@ -18,12 +19,13 @@ async def bg_remover(file:  UploadFile = File(...),
                      user_repo: UsersRepository = Depends(get_repository(UsersRepository))):
     try:
         contents = await file.read()
-        output = remove(contents)
-        image = Image.open(io.BytesIO(output))
-        imgio = io.BytesIO()
-        image.save(imgio, 'PNG')
-        imgio.seek(0)
-        return StreamingResponse(content=imgio, media_type="image/png")
+        # output = remove(contents)
+        # image = Image.open(io.BytesIO(output))
+        # imgio = io.BytesIO()
+        # image.save(imgio, 'PNG')
+        # imgio.seek(0)
+        # return StreamingResponse(content=imgio, media_type="image/png")
+        return False
 
     except Exception as e:
         return {"status": str(e)}
