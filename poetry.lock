@@ -506,6 +506,14 @@ python-versions = "*"
 flake8 = "*"
 
 [[package]]
+name = "flatbuffers"
+version = "2.0"
+description = "The FlatBuffers serialization format for Python"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "gdown"
 version = "4.4.0"
 description = "Google Drive direct download of big files."
@@ -727,6 +735,19 @@ optional = false
 python-versions = ">=3.8"
 
 [[package]]
+name = "onnxruntime"
+version = "1.10.0"
+description = "ONNX Runtime is a runtime accelerator for Machine Learning models"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flatbuffers = "*"
+numpy = ">=1.16.6"
+protobuf = "*"
+
+[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -814,6 +835,14 @@ python-versions = ">=3.6"
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
+
+[[package]]
+name = "protobuf"
+version = "4.21.1"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.7"
 
 [[package]]
 name = "psycopg2"
@@ -1382,7 +1411,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.1"
-content-hash = "528ebd1ed3cff0edd1840c2c6b381df6fd87b063fafe93685ed21d41bcf1d085"
+content-hash = "3a5158fa9a37f03ae4c605d90384008d19dba6908bbb5ee1e32060490e762552"
 
 [metadata.files]
 aiosql = [
@@ -1671,6 +1700,10 @@ flake8-string-format = [
     {file = "flake8-string-format-0.3.0.tar.gz", hash = "sha256:65f3da786a1461ef77fca3780b314edb2853c377f2e35069723348c8917deaa2"},
     {file = "flake8_string_format-0.3.0-py2.py3-none-any.whl", hash = "sha256:812ff431f10576a74c89be4e85b8e075a705be39bc40c4b4278b5b13e2afa9af"},
 ]
+flatbuffers = [
+    {file = "flatbuffers-2.0-py2.py3-none-any.whl", hash = "sha256:3751954f0604580d3219ae49a85fafec9d85eec599c0b96226e1bc0b48e57474"},
+    {file = "flatbuffers-2.0.tar.gz", hash = "sha256:12158ab0272375eab8db2d663ae97370c33f152b27801fa6024e1d6105fd4dd2"},
+]
 gdown = [
     {file = "gdown-4.4.0.tar.gz", hash = "sha256:18fc3a4da4a2273deb7aa29c7486be4df3919d904158ad6a6a3e25c8115470d7"},
 ]
@@ -1930,6 +1963,27 @@ numpy = [
     {file = "numpy-1.22.4-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0791fbd1e43bf74b3502133207e378901272f3c156c4df4954cad833b1380207"},
     {file = "numpy-1.22.4.zip", hash = "sha256:425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af"},
 ]
+onnxruntime = [
+    {file = "onnxruntime-1.10.0-cp36-cp36m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:aa5dec9c7c4fd5b8b9b77768c0f493fe730c7c277fd919c00578afa073d3f1b2"},
+    {file = "onnxruntime-1.10.0-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bbf9eaa6db369b52960c012fd8a8b6cca862a4deb42fdb5e1fa2ffb749c2274c"},
+    {file = "onnxruntime-1.10.0-cp36-cp36m-win32.whl", hash = "sha256:dbab3f8cf8d4f0ee5ecea27dbd0536521322b44a7dbf67e4c1e6fc1e43fac97c"},
+    {file = "onnxruntime-1.10.0-cp36-cp36m-win_amd64.whl", hash = "sha256:cf9599f58dab002dbe792b42c6bb6765b70795a87b40dcdbd5c180eb535a1099"},
+    {file = "onnxruntime-1.10.0-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:d733a687ee8117556ff0e60d7d3b2151c727f2ccf38dca1f5d71049800a02221"},
+    {file = "onnxruntime-1.10.0-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ccc3240c0c9d662f04bd56e593c1bbad84c84a40b1c9f965d39cd857290468a9"},
+    {file = "onnxruntime-1.10.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:69d0d5785c779f63b4cef2890a9eb47ad178ba1d7f7fd5028dacb5fc1467c537"},
+    {file = "onnxruntime-1.10.0-cp37-cp37m-win32.whl", hash = "sha256:753fbf64436ce93c750e817d8469ff4740adf18caec2822568687563f63ccff9"},
+    {file = "onnxruntime-1.10.0-cp37-cp37m-win_amd64.whl", hash = "sha256:2f9ab7deab0c44e2b02f3eb8a0b3bee4374575a6c4bb4b2928d5ffcc305f430a"},
+    {file = "onnxruntime-1.10.0-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:2419563e9fc4f5b7dedd4b70d2249a952001c33f3186b83212ad2a7a0824c9b4"},
+    {file = "onnxruntime-1.10.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:618c84c6bff73fd6dd6fcf304eb24a804df6c11f512ddead4cc73074b60012b8"},
+    {file = "onnxruntime-1.10.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3913769691f7f20e13070d65bfddd9f85f862274fcc17312c3b7d3fee8af21d8"},
+    {file = "onnxruntime-1.10.0-cp38-cp38-win32.whl", hash = "sha256:f7265bcd62f154f891f745d96f686ed92a0c0ca5589dc14f9203ae847e932792"},
+    {file = "onnxruntime-1.10.0-cp38-cp38-win_amd64.whl", hash = "sha256:df0c434f4a40212e87003b1b6f38a152d2f1d6447c261cd32c28434dd765c41c"},
+    {file = "onnxruntime-1.10.0-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:44e6dbe8a375b1d506f5ec9867f48d4ebe20f70156b31aed2025b9db4b06e2e3"},
+    {file = "onnxruntime-1.10.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d5b0d3cf319c038b9f4479235dcf842d959f1248be48953f478822ac48a60617"},
+    {file = "onnxruntime-1.10.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:34cfb07a8af91b3b7f82ad9db8f6dce67f0bd672cdaf659d0fd86aaba7a021d9"},
+    {file = "onnxruntime-1.10.0-cp39-cp39-win32.whl", hash = "sha256:1fb57101581eaec64d335d0675908fd41cae91b496475fc96fc5bb2a58844e5b"},
+    {file = "onnxruntime-1.10.0-cp39-cp39-win_amd64.whl", hash = "sha256:4087da19d2bb03ede012b9fd5f77f3b41f3ff500d2359d3d6361d593e47be59a"},
+]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
@@ -1997,6 +2051,22 @@ platformdirs = [
 pluggy = [
     {file = "pluggy-1.0.0-py2.py3-none-any.whl", hash = "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"},
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
+]
+protobuf = [
+    {file = "protobuf-4.21.1-cp310-abi3-win32.whl", hash = "sha256:52c1e44e25f2949be7ffa7c66acbfea940b0945dd416920231f7cb30ea5ac6db"},
+    {file = "protobuf-4.21.1-cp310-abi3-win_amd64.whl", hash = "sha256:72d357cc4d834cc85bd957e8b8e1f4b64c2eac9ca1a942efeb8eb2e723fca852"},
+    {file = "protobuf-4.21.1-cp37-abi3-macosx_10_9_universal2.whl", hash = "sha256:3767c64593a49c7ac0accd08ed39ce42744405f0989d468f0097a17496fdbe84"},
+    {file = "protobuf-4.21.1-cp37-abi3-manylinux2014_aarch64.whl", hash = "sha256:0d4719e724472e296062ba8e82a36d64693fcfdb550d9dff98af70ca79eafe3d"},
+    {file = "protobuf-4.21.1-cp37-abi3-manylinux2014_x86_64.whl", hash = "sha256:a4c0c6f2f95a559e59a0258d3e4b186f340cbdc5adec5ce1bc06d01972527c88"},
+    {file = "protobuf-4.21.1-cp37-cp37m-win32.whl", hash = "sha256:32fff501b6df3050936d1839b80ea5899bf34db24792d223d7640611f67de15a"},
+    {file = "protobuf-4.21.1-cp37-cp37m-win_amd64.whl", hash = "sha256:b3d7d4b4945fe3c001403b6c24442901a5e58c0a3059290f5a63523ed4435f82"},
+    {file = "protobuf-4.21.1-cp38-cp38-win32.whl", hash = "sha256:34400fd76f85bdae9a2e9c1444ea4699c0280962423eff4418765deceebd81b5"},
+    {file = "protobuf-4.21.1-cp38-cp38-win_amd64.whl", hash = "sha256:c8829092c5aeb61619161269b2f8a2e36fd7cb26abbd9282d3bc453f02769146"},
+    {file = "protobuf-4.21.1-cp39-cp39-win32.whl", hash = "sha256:2b35602cb65d53c168c104469e714bf68670335044c38eee3c899d6a8af03ffc"},
+    {file = "protobuf-4.21.1-cp39-cp39-win_amd64.whl", hash = "sha256:3f2ed842e8ca43b790cb4a101bcf577226e0ded98a6a6ba2d5e12095a08dc4da"},
+    {file = "protobuf-4.21.1-py2.py3-none-any.whl", hash = "sha256:b309fda192850ac4184ca1777aab9655564bc8d10a9cc98f10e1c8bf11295c22"},
+    {file = "protobuf-4.21.1-py3-none-any.whl", hash = "sha256:79cd8d0a269b714f6b32641f86928c718e8d234466919b3f552bfb069dbb159b"},
+    {file = "protobuf-4.21.1.tar.gz", hash = "sha256:5d9b5c8270461706973c3871c6fbdd236b51dfe9dab652f1fb6a36aa88287e47"},
 ]
 psycopg2 = [
     {file = "psycopg2-2.9.3-cp310-cp310-win32.whl", hash = "sha256:083707a696e5e1c330af2508d8fab36f9700b26621ccbcb538abe22e15485362"},
