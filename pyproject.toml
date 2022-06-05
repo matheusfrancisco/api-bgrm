@@ -23,6 +23,7 @@ uvicorn = "^0.17.6"
 passlib = "^1.7.4"
 PyJWT = "^2.4.0"
 bcrypt = "^3.2.2"
+Pillow = "^9.1.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.9b0"
