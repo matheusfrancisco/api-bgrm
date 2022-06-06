@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
 from app.api.routes import users
-from app.api.routes import bg_remover
+from app.api.routes import image
 
 router = APIRouter()
 router.include_router(users.router, tags=["user"], prefix="/users")
-router.include_router(bg_remover.router, tags=["bg_remover"], prefix="/bg_remover")
+router.include_router(image.router, tags=["image"], prefix="/image")

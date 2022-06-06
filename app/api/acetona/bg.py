@@ -81,7 +81,7 @@ def get_concat_v(img1: PILImage, img2: PILImage) -> PILImage:
 
 def remove(
     data: Union[bytes, PILImage, np.ndarray],
-    alpha_matting: bool = False,
+    alpha_matting: bool = True,
     alpha_matting_foreground_threshold: int = 240,
     alpha_matting_background_threshold: int = 10,
     alpha_matting_erode_size: int = 10,

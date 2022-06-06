@@ -54,7 +54,7 @@ def new_session(model_name: str) -> BaseSession:
 
     if "OMP_NUM_THREADS" in os.environ:
         sess_opts.inter_op_num_threads = int(os.environ["OMP_NUM_THREADS"])
-
+    print('este é o path:', path)
     return session_class(
         model_name,
         ort.InferenceSession(
