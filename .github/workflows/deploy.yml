@@ -125,6 +125,7 @@ jobs:
           host: ec2-54-85-50-240.compute-1.amazonaws.com
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSWORD }}
           port: 22
           script: |
             cd ~/api
