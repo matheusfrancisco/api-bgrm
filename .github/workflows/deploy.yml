@@ -112,6 +112,7 @@ jobs:
           host: ec2-54-85-50-240.compute-1.amazonaws.com
           username: ubuntu
           privateKey: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.PASSWORD }}
           port: 22
           local: "."
           remote: "/home/ubuntu/api/"
