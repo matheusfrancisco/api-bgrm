@@ -101,6 +101,8 @@ jobs:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           POSTGRES_PORT: 5432
           POSTGRES_USER: ignets_admin
+          app_env: prod
+          SECRET_KEY: ${{secrets.SECRET}}
           POSTGRS_PASSWORD: ${{secrets.DB_PASS}}
         run: |
           poetry run alembic upgrade head
