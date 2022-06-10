@@ -119,16 +119,17 @@ jobs:
           port: 22
           local: "."
           remote: "/home/ubuntu/api/"
-      - name: Update API
-        uses: appleboy/ssh-action@master
-        with:
-          host: ec2-54-85-50-240.compute-1.amazonaws.com
-          username: ubuntu
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSWORD }}
-          port: 22
-          script: |
-            cd ~/api
-            poetry install
-            poetry shell
-            poetry run uvicorn --host=0.0.0.0 app.main:app --reload
+      # TODO for instance we will do this step manually
+      #  - name: Update API
+      #    uses: appleboy/ssh-action@master
+      #    with:
+      #      host: ec2-54-85-50-240.compute-1.amazonaws.com
+      #      username: ubuntu
+      #      key: ${{ secrets.SSH_KEY }}
+      #      passphrase: ${{ secrets.PASSWORD }}
+      #      port: 22
+      #      script: |
+      #        cd ~/api
+      #        poetry install
+      #        poetry shell
+      #        poetry run uvicorn --host=0.0.0.0 app.main:app --reload
