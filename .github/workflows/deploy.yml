@@ -106,6 +106,9 @@ jobs:
           POSTGRS_PASSWORD: ${{secrets.DB_PASS}}
         run: |
           poetry run alembic upgrade head
+      - name: Remove files .
+        run: |
+          rm -rf .venv
       - name: Copy SSH build to EC2
         uses: garygrossgarten/github-action-scp@release
         with:
