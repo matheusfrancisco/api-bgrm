@@ -30,6 +30,8 @@ scipy = "1.8.0"
 PyMatting = "^1.1.5"
 gdown = "^4.4.0"
 onnxruntime = "1.10.0"
+imutils = "^0.5.4"
+opencv-python = "^4.6.0"
 
 
 [tool.poetry.dev-dependencies]

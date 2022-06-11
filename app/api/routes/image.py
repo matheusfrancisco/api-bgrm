@@ -12,6 +12,8 @@ from app.api.acetona.bg import remove
 import requests
 import sys
 import os
+from ..miope import blur
+
 
 router = APIRouter()
 
@@ -80,5 +82,22 @@ async def bg_remover_url(url:  str,
         return StreamingResponse(content=imgio, media_type="image/png")
 
     except Exception as e:
+        return {"status": str(e)}
+        
+
+@router.post("/blur_chars", name="blur_chars")
+async def blur_chars(file:  UploadFile = File(...),
+                     settings: AppSettings = Depends(get_app_settings),
+                     user_repo: UsersRepository = Depends(get_repository(UsersRepository))):
+    try:
+        contents = await file.read()
+        img_content = convert_bytes_to_image(contents)
+        resul = blur.identify_text(img_content)
+        return StreamingResponse(content=io.BytesIO(resul.tobytes()), media_type="image/png")
+
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
         return {"status": str(e)}
         
