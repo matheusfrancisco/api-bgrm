@@ -10,14 +10,15 @@ import io
 from PIL import Image
 from app.api.acetona.bg import remove
 import requests
+import sys
+import os
 
 router = APIRouter()
 
-erode_size = 10
+erode_size = 0
 
-def verify_image(img_content):
-    image1 = Image.open(io.BytesIO(img_content))
-    return image1.verify()
+def convert_bytes_to_image(byts):
+    return Image.open(io.BytesIO(byts))
 
 def convert_image_to_bytes(img):
     image = Image.open(io.BytesIO(img))
@@ -26,13 +27,35 @@ def convert_image_to_bytes(img):
     imgio.seek(0)
     return imgio
 
+def verify_transparency(img):
+    if img.info.get("transparency", None) is not None:
+        print('1')
+        return True
+    elif img.mode == "P":
+        transparent = img.info.get("transparency", -1)
+        for _, index in img.getcolors():
+            if index == transparent:
+                print('2')
+                return True
+    elif img.mode == "RGBA":
+        extrema = img.getextrema()
+        if extrema[3][0] < 255:
+            print('3')
+            return True
+
+    return False
+
 @router.post("/bg_remover_file", name="bg_remover_file")
 async def bg_remover(file:  UploadFile = File(...),
                      settings: AppSettings = Depends(get_app_settings),
                      user_repo: UsersRepository = Depends(get_repository(UsersRepository))):
     try:
         contents = await file.read()
-        verify_image(contents)
+        img_content = convert_bytes_to_image(contents)
+
+        if verify_transparency(img_content):
+            return {"msg": "Tranparency found in this image."}
+
         output = remove(contents, alpha_matting_erode_size=erode_size)
         imgio = convert_image_to_bytes(output)
         return StreamingResponse(content=imgio, media_type="image/png")
@@ -47,7 +70,11 @@ async def bg_remover_url(url:  str,
                      user_repo: UsersRepository = Depends(get_repository(UsersRepository))):
     try:
         contents = requests.get(url).content
-        verify_image(contents)
+        img_content = convert_bytes_to_image(contents)
+
+        if verify_transparency(img_content):
+            return {"msg": "Tranparency found in this image."}
+
         output = remove(contents, alpha_matting_erode_size=erode_size)
         imgio = convert_image_to_bytes(output)
         return StreamingResponse(content=imgio, media_type="image/png")
