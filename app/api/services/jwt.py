@@ -1,5 +1,12 @@
 from datetime import datetime, timedelta
-from typing import Dict
+from typing import Dict, Optional
+from app.core.config import get_app_settings
+from app.core.settings.app import AppSettings
+from starlette import requests
+from starlette.status import HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
+from starlette.exceptions import HTTPException
+from fastapi import Security, Depends
+from fastapi.security import APIKeyHeader
 
 import jwt
 from pydantic import ValidationError, BaseModel
@@ -14,6 +21,13 @@ class JWTMeta(BaseModel):
 
 class JWTUser(BaseModel):
     username: str
+
+class KeyHeader(APIKeyHeader):
+    async def __call__(self, request: requests.Request) -> Optional[str]:
+        try:
+            return await super().__call__(request)
+        except HTTPException as e:
+            raise HTTPException(status_code=e.status_code, details="authorization required")
 
 JWT_SUBJECT = "access"
 ALGORITHM = "HS256"
@@ -47,3 +61,12 @@ def get_username_from_token(token: str, secret_key: str) -> str:
         raise ValueError("unable to decode JWT token") from decode_error
     except ValidationError as validation_error:
         raise ValueError("malformed payload in token") from validation_error
+
+def get_authorization_header(token: str=Security(KeyHeader(name="Authorization")), 
+                            settings: AppSettings= Depends(get_app_settings)):
+    try:
+        return jwt.decode(token, settings.secret_key, algorithms=[ALGORITHM], verify_exp=True)
+    except jwt.ExpiredSignatureError as e:
+        raise HTTPException(HTTP_401_UNAUTHORIZED)
+    except jwt.InvalidSignatureError as e:
+        raise HTTPException(HTTP_400_BAD_REQUEST)

@@ -1,11 +1,13 @@
-from fastapi import APIRouter, Depends, BackgroundTasks
+from typing import Union
+from fastapi import APIRouter, Depends, BackgroundTasks, Header, HTTPException
 from app.core.settings.app import AppSettings
-from starlette.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from starlette.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from app.core.config import get_app_settings
 import json
 from app.api.services import jwt
+from app.api.services import security
 
-from app.api.types.models import User
+from app.api.types.models import User, UserUpdate
 from app.api.db.repositories.users import UsersRepository
 from app.api.dependencies.database import get_repository
 
