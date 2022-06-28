@@ -22,6 +22,10 @@ class JWTMeta(BaseModel):
 class JWTUser(BaseModel):
     username: str
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
 class KeyHeader(APIKeyHeader):
     async def __call__(self, request: requests.Request) -> Optional[str]:
         try:

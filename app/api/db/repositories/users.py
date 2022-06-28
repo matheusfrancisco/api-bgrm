@@ -42,3 +42,12 @@ class UsersRepository(BaseRepository):
         if len(user_row) > 0:
             return user_row[0]
         return None
+
+    async def select_user_by_username(self, *, username: str,) -> Union[Any]:
+        user_row = await queries.select_user_by_username(
+            self.connection,
+            username=username)
+
+        if len(user_row) > 0:
+            return user_row[0]
+        return None

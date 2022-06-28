@@ -7,3 +7,6 @@ RETURNING
 
 -- name: select-user-by-teacher-code
 SELECT * FROM users WHERE email = :email
+
+--name: select-user-by-username
+SELECT * FROM users WHERE username = :username

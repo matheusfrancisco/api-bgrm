@@ -18,6 +18,13 @@ class UsersQueriesMixin:
             email: str,
     ) -> Record: ...
 
+    async def select_user_by_username(
+            self,
+            conn: Connection,
+            *,
+            username: str,
+    ) -> Record: ...
+
 class Queries(
     UsersQueriesMixin,
 ): ...
